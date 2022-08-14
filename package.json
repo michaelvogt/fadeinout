@@ -1,13 +1,19 @@
 {
-  "name": "fadein",
-  "private": true,
-  "version": "0.0.0",
+  "name": "fadeinout",
+  "version": "0.0.1",
+  "description": "Filter for Elementary audio to fade in/out a node",
+  "main": "index.js",
+  "keywords": ["elementary", "audio", "filter", "fade"],
+  "author": "Michael Vogt",
+  "license": "MIT",
+
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+
   "devDependencies": {
     "vite": "^3.0.0"
   },

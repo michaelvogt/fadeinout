@@ -1,19 +1,39 @@
+<!--
+    (c) 2022 Michael Vogt
+    This code is licensed under MIT license (see LICENSE for details)
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>Fade in/out sample page</title>
   </head>
+
   <body>
     <div id="app">
+      <header>
+        <h1>Fade audio in/out</h1>
+        <p>Filter for Elementary audio</p>
+      </header>
       <section>
         <button id="startButton">Start music</button>
       </section>
       <section>
-        <button id="fadein">Fade In</button>
-        <button id="fadeout">Fade Out</button>
+        <button id="fadein" disabled>Fade In</button>
+        <button id="fadeout" disabled>Fade Out</button>
       </section>
+
+      <div>
+        <label for="leftPlotter">Left Channel</label>
+        <canvas id="leftPlotter" width="800"></canvas>
+      </div>
+      <div>
+        <label for="rightPlotter">Right Channel</label>
+        <canvas id="rightPlotter" width="800"></canvas>
+      </div>
     </div>
 
     <script type="module" src="/main.js"></script>
