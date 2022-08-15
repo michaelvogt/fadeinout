@@ -15,21 +15,15 @@ import {el, createNode, resolve} from '@elemaudio/core';
 
 
 function FadeComposite({props, children}) {
-    const {start, duration, type} = props;
+    const {key, start, duration, type} = props;
     const [xn] = children;
 
-    let env, gate = 1.0;
-
-    env = el.smooth(el.tau2pole(0.5), gate);
-    if (type === 'out') {
-        env = el.sub(1.0, env);
-    }
-
-    return resolve(el.mul(env, xn));
+    const gate = type === 'in' ? 1.0 : 0.0;
+    return el.mul(xn, el.sm(el.const({key: key, value: gate})));
 }
 
-export function fade(start, duration, type, xn) {
-    return createNode(FadeComposite,{start, duration, type}, [xn]);
+export function fade(key, start, duration, type, xn) {
+    return createNode(FadeComposite,{key, start, duration, type}, [xn]);
 }
 
 export default function fader(props, xl, xr) {
@@ -39,13 +33,9 @@ export default function fader(props, xl, xr) {
     invariant(typeof props.duration === 'number', 'Unexpected duration prop');
     invariant(typeof props.type === 'string', 'Unexpected type prop');
 
-    let start = el.const({key: `${props.key}:start`, value: props.start});
-    let duration = el.const({key: `${props.key}:duration`, value: props.duration});
-    let type = el.const({key: `${props.key}:type`, value: props.type});
-
     return [
-        fade(start, duration, type, xl),
-        fade(start, duration, type, xr),
+        fade(props.key, props.start, props.duration, props.type, xl),
+        fade(props.key, props.start, props.duration, props.type, xr),
     ];
 }
 
