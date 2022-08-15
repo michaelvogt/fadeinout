@@ -5,7 +5,7 @@
 
 
 import invariant from 'invariant';
-import {el, createNode, resolve} from '@elemaudio/core';
+import {el, createNode} from '@elemaudio/core';
 
 /*
     Code adapted from Elementary audio sample code
