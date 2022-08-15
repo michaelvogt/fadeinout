@@ -1,0 +1,41 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@elemaudio/core': ^1.0.3
+  invariant: ^2.2.4
+
+dependencies:
+  '@elemaudio/core': registry.npmjs.org/@elemaudio/core/1.0.8
+  invariant: 2.2.4
+
+packages:
+
+  /invariant/2.2.4:
+    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+
+  /js-tokens/4.0.0:
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: false
+
+  /loose-envify/1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
+    dependencies:
+      js-tokens: 4.0.0
+    dev: false
+
+  /shallowequal/1.1.0:
+    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
+    dev: false
+
+  registry.npmjs.org/@elemaudio/core/1.0.8:
+    resolution: {integrity: sha512-+chojEufEKg5vS1b4UL+IYYOa6ijqiYDpFCGrw6QnW5Icf+nPX6/+cKyU14jWfrmE4j3C/Y/hdV1qRwzLmWIFQ==, registry: https://www.elementary.audio/api/v1/registry/, tarball: https://registry.npmjs.org/@elemaudio/core/-/core-1.0.8.tgz}
+    name: '@elemaudio/core'
+    version: 1.0.8
+    dependencies:
+      invariant: 2.2.4
+      shallowequal: 1.1.0
+    dev: false

@@ -1,0 +1,13 @@
+{
+  "name": "fadeinout",
+  "version": "0.0.1",
+  "description": "Filter for Elementary audio to fade in/out a node",
+  "main": "index.js",
+  "keywords": ["elementary", "audio", "filter", "fade"],
+  "author": "Michael Vogt",
+  "license": "MIT",
+  "dependencies": {
+    "@elemaudio/core": "^1.0.3",
+    "invariant": "^2.2.4"
+  }
+}
