@@ -5,7 +5,7 @@
 
 
 import invariant from 'invariant';
-import {el, createNode} from '@elemaudio/core';
+import {el} from '@elemaudio/core';
 
 /*
     Code adapted from Elementary audio sample code
@@ -13,17 +13,9 @@ import {el, createNode} from '@elemaudio/core';
     <link>https://github.com/elemaudio/compressor</link>
 */
 
-
-function FadeComposite({props, children}) {
-    const {key, start, duration, type} = props;
-    const [xn] = children;
-
-    const gate = type === 'in' ? 1.0 : 0.0;
-    return el.mul(xn, el.sm(el.const({key: key, value: gate})));
-}
-
 export function fade(key, start, duration, type, xn) {
-    return createNode(FadeComposite,{key, start, duration, type}, [xn]);
+    const gate = type === 'in' ? 1.0 : 0.0;
+    return el.mul(xn, el.sm(el.const({key: `${key}:out`, value: gate})));
 }
 
 export default function fader(props, xl, xr) {

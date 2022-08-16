@@ -60,7 +60,6 @@ startButton.addEventListener('click', async () => {
         fadeOutButton.disabled = false;
     } else {
         isPlaying = false;
-        render(0, 0);
         await ctx.suspend();
 
         fadeInButton.disabled = true;
