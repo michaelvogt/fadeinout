@@ -22,22 +22,28 @@ let isPlaying = false;
 let xL = el.cycle(440), xR = el.cycle(441);
 
 
-function handleFade(type) {
+function handleFade(type, duration) {
     let [leftChannelOutput, rightChannelOutput] = fader({
         key: 'fader',
-        start: '0.0',      // in timecode notation (?)
-        duration: 0.5,     // in ms
+        duration: Number.parseFloat(duration),     // in ms
         type,   // 'in' or 'out'
     }, xL, xR);
 
-    render(leftChannelOutput, rightChannelOutput,);
+    render(leftChannelOutput, rightChannelOutput);
+}
+
+function handleDuration(event) {
+    fadeDurationOut.innerText = event.target.value;
 }
 
 function render(leftChannelOut, rightChannelOut) {
-    core.render(
+    const result = core.render(
         el.meter({name: 'left'}, leftChannelOut),
         el.meter({name: 'right'}, rightChannelOut),
-    );}
+    );
+
+    console.log('render', result)
+}
 
 
 
@@ -50,11 +56,12 @@ core.on('meter', function(event) {
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', async () => {
-    await ctx.resume();
 
     if (isPlaying === false) {
         isPlaying = true;
-        render(xL, xR);
+        await ctx.resume();
+
+        handleFade('in', '100')
 
         fadeInButton.disabled = false;
         fadeOutButton.disabled = false;
@@ -68,11 +75,16 @@ startButton.addEventListener('click', async () => {
 });
 
 const fadeInButton = document.querySelector('#fadein');
-fadeInButton.addEventListener('click', () => handleFade('in'));
+fadeInButton.addEventListener('click', () => handleFade('in', fadeDurationRange.value));
 
 const fadeOutButton = document.querySelector('#fadeout');
-fadeOutButton.addEventListener('click', () => handleFade('out'));
+fadeOutButton.addEventListener('click', () => handleFade('out', fadeDurationRange.value));
 
+
+const fadeDurationRange = document.querySelector("#duration #range");
+fadeDurationRange.addEventListener('input', (event) => handleDuration(event));
+
+const fadeDurationOut = document.querySelector('#duration #output');
 
 
 addEventListener('load', async () => {

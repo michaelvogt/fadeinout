@@ -37,3 +37,11 @@ header h1 {
   max-width: 800px;
 }
 
+#duration {
+  display: inline-flex;
+  flex-direction: column;
+
+  width: 250px;
+  height: 80px;
+}
+

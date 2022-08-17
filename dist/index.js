@@ -13,21 +13,25 @@ import {el} from '@elemaudio/core';
     <link>https://github.com/elemaudio/compressor</link>
 */
 
-export function fade(key, start, duration, type, xn) {
+export function fade(key, duration, type, xn) {
     const gate = type === 'in' ? 1.0 : 0.0;
-    return el.mul(xn, el.sm(el.const({key: `${key}:out`, value: gate})));
+    const gateConst = el.const({key: `${key}:out`, value: gate});
+    const durConst = el.const({key: `${key}:dur`, value: duration / 1000});
+
+    console.log('fade', gate, duration)
+
+    return el.mul(xn, el.smooth(el.tau2pole(durConst), gateConst));
 }
 
 export default function fader(props, xl, xr) {
     invariant(typeof props === 'object', 'Unexpected props object');
     invariant(typeof props.key === 'string', 'Unexpected key prop');
-    invariant(typeof props.start === 'string', 'Unexpected start prop');
     invariant(typeof props.duration === 'number', 'Unexpected duration prop');
     invariant(typeof props.type === 'string', 'Unexpected type prop');
 
     return [
-        fade(props.key, props.start, props.duration, props.type, xl),
-        fade(props.key, props.start, props.duration, props.type, xr),
+        fade(props.key, props.duration, props.type, xl),
+        fade(props.key, props.duration, props.type, xr),
     ];
 }
 
